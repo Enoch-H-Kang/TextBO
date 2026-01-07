@@ -185,84 +185,8 @@ python TextBO.py --parallel 3
 python TextBO-GPT.py --test
 ```
 
-## Text Simulation Pipeline (text_simulation/ directory)
 
-### `text_simulation/convert_persona_to_text.py`
-**Purpose**: Convert JSON Persona Data to Text Format
-
-Transforms structured JSON persona data into readable text format suitable for LLM consumption:
-- Extracts survey responses from JSON
-- Formats as human-readable persona profiles
-- Used as input for digital twin simulations
-
-### `text_simulation/batch_convert_personas.py`
-**Purpose**: Batch Process Multiple Personas
-
-Wrapper script to convert multiple persona JSON files to text format in parallel:
-- Processes entire directories of persona files
-- Efficient bulk conversion
-- Progress tracking with tqdm
-
-### `text_simulation/convert_question_json_to_text.py`
-**Purpose**: Convert Question Data to Text Format
-
-Converts survey question JSON structures into text format:
-- Extracts question text, options, and metadata
-- Formats for LLM simulation inputs
-- Maintains question structure and response options
-
-### `text_simulation/create_text_simulation_input.py`
-**Purpose**: Combine Personas with Questions
-
-Creates paired input files for simulations:
-- **Combines**: Text persona profiles + Survey questions
-- **Output**: Simulation-ready input files
-- **Structure**: Each file contains persona context + new questions to answer
-- **Directory**: `text_simulation_input/`
-
-### `text_simulation/run_LLM_simulations.py`
-**Purpose**: Execute Digital Twin Simulations
-
-Main simulation runner that generates digital twin responses:
-- **Input**: Combined persona-question files
-- **Process**: Uses LLM to answer questions as if the persona is responding
-- **Models**: Configurable (OpenAI GPT or Gemini)
-- **Configuration Files**:
-  - `configs/openai_config.yaml`
-  - `configs/gemini_config.yaml`
-- **Features**:
-  - Concurrent workers for parallel processing
-  - Retry logic for failed API calls
-  - Token limit management
-  - Force regenerate option
-- **Output**: Simulated responses in `text_simulation_output/`
-
-### `text_simulation/llm_helper.py`
-**Purpose**: LLM Interaction Helper Functions
-
-Utility library for LLM API interactions:
-- **Functions**:
-  - OpenAI API client setup (requires `OPENAI_API_KEY`)
-  - Gemini API client setup (requires `GOOGLE_API_KEY`)
-  - Rate limiting and retry logic
-  - Response parsing and validation
-  - Error handling for API failures
-- **Models Supported**: OpenAI GPT, Google Gemini
-- **Configuration**: Loads parameters from YAML config files
-
-### `text_simulation/postprocess_responses.py`
-**Purpose**: Analyze and Validate Simulation Results
-
-Post-processing and analysis of digital twin simulation outputs:
-- **Verification**: Checks response quality and completeness
-- **Analysis**: Computes statistics on simulation accuracy
-- **Comparison**: Validates digital twin responses against ground truth
-- **Reporting**: Generates summary statistics and error reports
-- **Quality Control**: Identifies failed or inconsistent simulations
-
----
-
-## Configuration Files
+## Configuration Files after you install the Twin-2k-500 dataset
 
 ### `text_simulation/configs/openai_config.yaml`
 OpenAI API configuration for simulations:
@@ -289,22 +213,6 @@ llm_config:
   max_tokens: 18192
 ```
 
----
-
-## Workflow Examples
-
-### Complete Digital Twin Simulation Workflow
-```bash
-# 1. Download dataset
-poetry run python download_dataset.py
-
-# 2. Convert personas to text (done via pipeline)
-# 3. Convert questions to text (done via pipeline)
-# 4. Create simulation inputs (done via pipeline)
-
-# 5. Run simulations
-./scripts/run_pipeline.sh --max_personas=5  # Test with 5 personas
-./scripts/run_pipeline.sh                   # Full run (2058 personas)
 ```
 
 ### Advertisement Optimization Workflow

@@ -17,7 +17,7 @@ import base64
 import mimetypes
 from openai import OpenAI
 
-class TBONOptimizer:
+class TextBOOptimizer:
     """
     TextGrad with Best-of-N Bayesian Optimization (TextBO)
     Implements the TextBO algorithm from the paper:
@@ -1383,7 +1383,7 @@ def main(test_mode: bool = False, gepa_mode: bool = False, parallel_k: int = 1):
             print(f"⚠️  Warning: Initial image not found at {initial_image_path}")
         
         # Initialize T-BoN optimizer
-        optimizer = TBONOptimizer(
+        optimizer = TextBOOptimizer(
             api_key=None,  # Not needed for vertexai=True
             project_id=PROJECT_ID,
             location=LOCATION,

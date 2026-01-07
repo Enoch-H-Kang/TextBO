@@ -4,14 +4,6 @@
 
 This document provides detailed explanations of TextBO in "Bayesian optimization in language space: An eval-efficient AI self-improvement framework" (https://arxiv.org/abs/2511.12063). For the installation guide for the Twin-2k-500 dataset we utilize, please refer to https://github.com/TianyiPeng/Twin-2K-500-Mega-Study .
 
-## Research Context
-
-This repository implements methods for **Bayesian Optimization in Language Space** for the Twin-2K-500 dataset. The code combines:
-1. **Advertisement Optimization**: Using TextBO (Text-Based Bayesian Optimization) to generate and optimize advertising content
-2. **Thompson Sampling**: Multi-armed bandit algorithms for efficient ad selection
-
----
-
 ## Core Optimization Algorithms
 
 ### `TextBO.py`

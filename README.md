@@ -4,6 +4,44 @@
 
 This document provides detailed explanations of TextBO in "Bayesian optimization in language space: An eval-efficient AI self-improvement framework" (https://arxiv.org/abs/2511.12063). For the installation guide for the Twin-2k-500 dataset we utilize, please refer to https://github.com/TianyiPeng/Twin-2K-500-Mega-Study .
 
+> **Note:** The scripts in this repository expect a `text_simulation/` directory with persona inputs and, for some workflows, pre-generated campaign assets. That directory is not included here, so you will need to generate or copy it yourself (see **Required input folders** below).
+
+## Setup
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+### Environment variables
+
+Create a `.env` file in the repository root with:
+
+```bash
+GOOGLE_API_KEY=...
+GOOGLE_PROJECT_ID=...
+GOOGLE_LOCATION=...
+OPENAI_API_KEY=...            # Optional (TextBO-GPT.py)
+OPENAI_TEXT_MODEL=gpt-5-mini  # Optional
+OPENAI_VISION_MODEL=gpt-5-mini
+NUM_AD_IMAGES=64              # Optional
+MAX_RETRIES=5                 # Optional
+TEST_MODE=false               # Optional
+```
+
+## Required input folders
+
+Several scripts read from fixed paths. Ensure these exist before running:
+
+* `campaign_output/<scenario>_campaign_output/`  
+  * Generated ad images named like `<scenario>_ad_01.png`, `<scenario>_ad_02.png`, ...
+  * A `generated_prompts.json` file created by `ad_gen.py`
+* `text_simulation/text_simulation_input/`  
+  * Persona prompt files named `pid_*_prompt.txt` (used by `DTTTS.py` and `ad_simulator.py`)
+* `text_simulation/text_personas/`  
+  * Persona summary files named `pid_*_mega_persona.txt` (used by `TextBO.py`)
+
 ## Core Optimization Algorithms
 
 ### `TextBO.py`
@@ -107,6 +145,45 @@ Simulates how digital twin personas respond to advertisement images:
 
 **Use Case**: Evaluate how well an ad resonates with specific persona profiles before real-world deployment.
 
+
+## Running the scripts
+
+### Download the dataset
+```bash
+python download_dataset.py
+```
+This writes data into `data/mega_persona_json/` and `data/mega_persona_summary_text/`.
+
+### Generate ads
+```bash
+python ad_gen.py
+```
+*Update `SCENARIO_NAME` and the creative brief in `ad_gen.py` before running.*
+
+### Simulate ad performance
+```bash
+python ad_simulator.py
+```
+*Update `SCENARIO_NAME` in `ad_simulator.py` to point at the correct campaign output.*
+
+### Run DTTTS selection
+```bash
+python DTTTS.py        # includes personas + images
+python DTTTS-gemini.py # uses Gemini logprobs only
+```
+*Update `SCENARIO_NAME` in each script as needed. Use `--test` to reduce timesteps.*
+
+### Run TextBO optimization
+```bash
+python TextBO.py --test
+python TextBO.py --gepa
+python TextBO.py --parallel 3
+```
+*`TextBO.py` looks for DTTTS outputs in `campaign_output/<scenario>_campaign_output/` and personas in `text_simulation/text_personas/`.*
+
+```bash
+python TextBO-GPT.py --test
+```
 
 ## Text Simulation Pipeline (text_simulation/ directory)
 
@@ -255,7 +332,6 @@ poetry run python TextBO.py --initial-prompt "Your starting prompt"
 | `TextBO-GPT.py` | OpenAI GPT + Gemini | Direct Gemini evaluation | Multi-model prompt optimization |
 | `DTTTS.py` | Gemini | Thompson Sampling with personas | Best ad selection (standard) |
 | `DTTTS-gemini.py` | Gemini | Thompson Sampling | Gemini-optimized variant |
-| `DTTTS_r.py` | Gemini | Thompson Sampling | Refined/enhanced version |
 | `ad_gen.py` | Gemini + Imagen | Creative brief → Images | Bulk ad image generation |
 | `ad_simulator.py` | Gemini 2.5 Flash | Persona + image → score | Individual ad evaluation |
 
@@ -279,4 +355,3 @@ poetry run python TextBO.py --initial-prompt "Your starting prompt"
 - `MAX_RETRIES` - API retry attempts (default: 5)
 
 Store these in a `.env` file in the repository root (already gitignored for security).
-

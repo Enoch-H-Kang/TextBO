@@ -1,15 +1,14 @@
 Implementation of TextBO in "Bayesian optimization in language space: An eval-efficient AI self-improvement framework" (https://arxiv.org/abs/2511.12063)
 
-# TextBO Python Files Documentation
+# TextBO
 
 This document provides detailed explanations of all Python files in the TextBO repository, organized by their function within the system.
 
 ## Research Context
 
-This repository implements methods for **Digital Twin Simulation** and **Bayesian Optimization in Language Space** for the Twin-2K-500 dataset. The code combines:
-1. **Digital Twin Creation**: Simulating individual personas based on survey data
-2. **Advertisement Optimization**: Using TextBO (Text-Based Bayesian Optimization) to generate and optimize advertising content
-3. **Thompson Sampling**: Multi-armed bandit algorithms for efficient ad selection
+This repository implements methods for **Bayesian Optimization in Language Space** for the Twin-2K-500 dataset. The code combines:
+1. **Advertisement Optimization**: Using TextBO (Text-Based Bayesian Optimization) to generate and optimize advertising content
+2. **Thompson Sampling**: Multi-armed bandit algorithms for efficient ad selection
 
 ---
 

@@ -15,7 +15,7 @@ This repository implements methods for **Digital Twin Simulation** and **Bayesia
 
 ## Core Optimization Algorithms
 
-### `T-BoN.py`
+### `TextBO.py`
 **Purpose**: TextBO with Gemini (Best-of-N Bayesian Optimization)
 
 Implements the TextBO algorithm for optimizing prompts in language space using Gemini models. Key features:
@@ -27,10 +27,10 @@ Implements the TextBO algorithm for optimizing prompts in language space using G
 
 **Use Case**: Start with an initial prompt and optimize it based on digital twin persona feedback for maximum effectiveness.
 
-### `T-BoN-GPT.py`
+### `TextBO-GPT.py`
 **Purpose**: TextBO with OpenAI GPT (Multi-Model Implementation)
 
-Similar to T-BoN.py but uses both OpenAI and Gemini models:
+Similar to TextBO.py but uses both OpenAI and Gemini models:
 - **Class**: `TBONOptimizer`
 - **Key Difference**: Uses OpenAI's GPT models (configurable via env: `OPENAI_TEXT_MODEL`, `OPENAI_VISION_MODEL`)
 - **Evaluation**: Direct Gemini 2.5 Pro evaluation without persona-based feedback
@@ -288,7 +288,7 @@ poetry run python ad_simulator.py
 poetry run python DTTTS.py
 
 # OR: Use TextBO to optimize ad prompts
-poetry run python T-BoN.py --initial-prompt "Your starting prompt"
+poetry run python TextBO.py --initial-prompt "Your starting prompt"
 ```
 
 ---
@@ -297,8 +297,8 @@ poetry run python T-BoN.py --initial-prompt "Your starting prompt"
 
 | File | Primary Model | Evaluation Method | Use Case |
 |------|--------------|-------------------|----------|
-| `T-BoN.py` | Gemini | Persona feedback (train/test split) | Persona-driven prompt optimization |
-| `T-BoN-GPT.py` | OpenAI GPT + Gemini | Direct Gemini evaluation | Multi-model prompt optimization |
+| `TextBO.py` | Gemini | Persona feedback (train/test split) | Persona-driven prompt optimization |
+| `TextBO-GPT.py` | OpenAI GPT + Gemini | Direct Gemini evaluation | Multi-model prompt optimization |
 | `DTTTS.py` | Gemini | Thompson Sampling with personas | Best ad selection (standard) |
 | `DTTTS-gemini.py` | Gemini | Thompson Sampling | Gemini-optimized variant |
 | `DTTTS_r.py` | Gemini | Thompson Sampling | Refined/enhanced version |

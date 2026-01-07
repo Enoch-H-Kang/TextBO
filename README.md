@@ -1,8 +1,8 @@
-Implementation of TextBO in "Bayesian optimization in language space: An eval-efficient AI self-improvement framework" (https://arxiv.org/abs/2511.12063)
+
 
 # TextBO
 
-This document provides detailed explanations of all Python files in the TextBO repository, organized by their function within the system.
+This document provides detailed explanations of TextBO in "Bayesian optimization in language space: An eval-efficient AI self-improvement framework" (https://arxiv.org/abs/2511.12063).
 
 ## Research Context
 

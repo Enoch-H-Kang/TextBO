@@ -66,19 +66,6 @@ Alternative implementation of the Thompson Sampling algorithm with Gemini-specif
 - **Similar to DTTTS.py** but may have different evaluation or configuration strategies
 - **Focus**: Optimized for Gemini API usage patterns
 
-### `DTTTS_r.py`
-**Purpose**: Digital Twin Thompson Sampling (Refined/Revised version)
-
-Refined implementation with additional features:
-- **Class**: `AlternatingBestWorstTTTS`
-- **Environment Variables**:
-  - `GOOGLE_API_KEY`: Gemini API access
-  - `GOOGLE_CLOUD_PROJECT`: GCP project ID
-  - `GOOGLE_CLOUD_LOCATION`: GCP region (default: "global")
-- **Enhanced Error Handling**: More robust API interaction
-- **Test Mode**: Configurable test mode for debugging
-
----
 
 ## Advertisement Generation & Simulation
 
@@ -128,30 +115,6 @@ Simulates how digital twin personas respond to advertisement images:
 
 **Use Case**: Evaluate how well an ad resonates with specific persona profiles before real-world deployment.
 
----
-
-## Dataset Management
-
-### `download_dataset.py`
-**Purpose**: Twin-2K-500 Dataset Downloader
-
-Downloads and organizes the Twin-2K-500 dataset from Hugging Face:
-- **Dataset**: `LLM-Digital-Twin/Twin-2K-500`
-- **Two Splits Downloaded**:
-  1. **wave_split**:
-     - Mega persona data (waves 1-3 survey responses)
-     - Answer blocks (wave 4 questions with wave 1-3 answers)
-     - Answer blocks (wave 4 questions with wave 4 answers)
-  2. **full_persona**:
-     - Persona summaries (text descriptions)
-- **Output Directories**:
-  - `data/mega_persona_json/mega_persona/` - Full persona JSON files
-  - `data/mega_persona_json/answer_blocks/` - Question/answer pairs
-  - `data/mega_persona_summary_text/` - Text summaries of personas
-
-**Use Case**: First step in any workflow - downloads the necessary persona and survey data.
-
----
 
 ## Text Simulation Pipeline (text_simulation/ directory)
 
@@ -324,16 +287,4 @@ poetry run python TextBO.py --initial-prompt "Your starting prompt"
 - `MAX_RETRIES` - API retry attempts (default: 5)
 
 Store these in a `.env` file in the repository root (already gitignored for security).
-
----
-
-## Research Paper Reference
-
-Based on the codebase structure, this appears to implement methods from research on:
-1. **Digital Twin Simulation**: Creating LLM-based virtual representations of survey respondents
-2. **Bayesian Optimization in Language Space**: TextBO algorithm for prompt optimization
-3. **Thompson Sampling**: Multi-armed bandit approaches for efficient ad selection
-4. **Twin-2K-500 Dataset**: Large-scale persona dataset with 2058 individuals and 500+ survey questions
-
-The combination enables evaluation-efficient optimization of advertising content using minimal real-world testing through digital twin simulations.
 

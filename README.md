@@ -2,7 +2,7 @@
 
 # TextBO
 
-This document provides detailed explanations of TextBO in "Bayesian optimization in language space: An eval-efficient AI self-improvement framework" (https://arxiv.org/abs/2511.12063).
+This document provides detailed explanations of TextBO in "Bayesian optimization in language space: An eval-efficient AI self-improvement framework" (https://arxiv.org/abs/2511.12063). For the installation guide for the Twin-2k-500 dataset we utilize, please refer to https://github.com/TianyiPeng/Twin-2K-500-Mega-Study
 
 ## Research Context
 

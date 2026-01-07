@@ -18,7 +18,7 @@ This repository implements methods for **Bayesian Optimization in Language Space
 **Purpose**: TextBO with Gemini (Best-of-N Bayesian Optimization)
 
 Implements the TextBO algorithm for optimizing prompts in language space using Gemini models. Key features:
-- **Class**: `TBONOptimizer`
+- **Class**: `TextBOOptimizer`
 - **Optimization Method**: Iteratively refines prompts through gradient-based exploration
 - **Evaluation**: Uses persona-based feedback from digital twin data (train/test split)
 - **Models**: Gemini 2.5 Flash for text generation and criticism, Imagen 4 for image generation
@@ -30,7 +30,7 @@ Implements the TextBO algorithm for optimizing prompts in language space using G
 **Purpose**: TextBO with OpenAI GPT (Multi-Model Implementation)
 
 Similar to TextBO.py but uses both OpenAI and Gemini models:
-- **Class**: `TBONOptimizer`
+- **Class**: `TextBOOptimizer`
 - **Key Difference**: Uses OpenAI's GPT models (configurable via env: `OPENAI_TEXT_MODEL`, `OPENAI_VISION_MODEL`)
 - **Evaluation**: Direct Gemini 2.5 Pro evaluation without persona-based feedback
 - **Visual Pattern Analysis**: Analyzes top and bottom performing iterations to extract visual insights

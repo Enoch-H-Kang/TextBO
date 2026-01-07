@@ -1,0 +1,24 @@
+# Gemini API configuration
+provider: "gemini"
+
+# Processing options
+force_regenerate: false
+max_personas: 5  # Set to 5 for testing
+num_workers: 30 # Number of concurrent requests
+
+# Retries for the entire sequence (LLM Call + Save + Verify)
+max_retries: 3 
+
+# Input/Output directories
+input_folder_dir: "text_simulation_input"
+output_folder_dir: "text_simulation_output"
+
+# LLM-specific parameters nested under 'llm_config'
+llm_config:
+  model_name: "gemini-2.5-pro-preview-06-05" 
+  temperature: 0.0
+  max_tokens: 18192 # Corrected to a reasonable and supported output limit
+  system_instruction: |
+    You are an AI assistant. Your task is to answer the 'New Survey Question' as if you are the person described in the 'Persona Profile' (which consists of their past survey responses).
+    Adhere to the persona by being consistent with their previous answers and stated characteristics.
+    Follow all instructions provided for the new question carefully regarding the format of your answer.

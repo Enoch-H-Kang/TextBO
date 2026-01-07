@@ -14,7 +14,7 @@ import numpy as np
 from typing import List, Dict, Optional, Tuple
 from io import BytesIO
 
-class TBONOptimizer:
+class TextBOOptimizer:
     """
     Text-Based Optimization using Best-of-N Bayesian Optimization (TextBO)
 
@@ -1482,7 +1482,7 @@ def main(test_mode: bool = False, gepa_mode: bool = False, parallel_k: int = 1):
             print(f"⚠️  Warning: Initial image not found at {initial_image_path}")
         
         # Initialize T-BoN optimizer
-        optimizer = TBONOptimizer(
+        optimizer = TextBOOptimizer(
             api_key=None,  # Not needed for vertexai=True
             project_id=PROJECT_ID,
             location=LOCATION,

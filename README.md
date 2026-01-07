@@ -1,8 +1,8 @@
 Implementation of TextBO in "Bayesian optimization in language space: An eval-efficient AI self-improvement framework" (https://arxiv.org/abs/2511.12063)
 
-# T-BON Python Files Documentation
+# TextBO Python Files Documentation
 
-This document provides detailed explanations of all Python files in the T-BON repository, organized by their function within the system.
+This document provides detailed explanations of all Python files in the TextBO repository, organized by their function within the system.
 
 ## Research Context
 
